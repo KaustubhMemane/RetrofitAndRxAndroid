@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                     public ObservableSource<ResumeDataType> call() throws Exception {
 
                         ResumeDataType resumeDataType=getDataFromJson();
-                        return Observable.just(resumeDataType);
+
+                        return (Observable.just(resumeDataType));
                     }
                 })
                 .subscribeOn(Schedulers.io())
@@ -77,28 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ResumeDataType getDataFromJson() throws IOException {
-        final ResumeDataType[] resumeData = new ResumeDataType[1];
+        ResumeDataType resumeData = new ResumeDataType();
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("http://kaustubhmemane.com/my_resume_overview")
                 .build();
-        //Response response = client.newCall(request).execute();
-
-        final Gson gson = new Gson();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                resumeData[0] = gson.fromJson(response.body().charStream(),
-                        ResumeDataType.class);
-            }
-        });
-        return resumeData[0];
+        Response response = client.newCall(request).execute();
+        
+        Gson gson = new Gson();
+        ResumeDataType r = gson.fromJson(response.body().string(),ResumeDataType.class);
+        return r;
     }
 
     public Observable<ResumeDataType> resumeDataTypeObservable()

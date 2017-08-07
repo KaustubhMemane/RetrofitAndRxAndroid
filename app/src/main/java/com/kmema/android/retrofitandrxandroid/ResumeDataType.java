@@ -13,6 +13,7 @@ public class ResumeDataType {
     public String className;
     public String major;
     public String country;
+    @SerializedName("address")
     public AddressDatatype addressDatatype;
     public String overview;
     public String skill;
