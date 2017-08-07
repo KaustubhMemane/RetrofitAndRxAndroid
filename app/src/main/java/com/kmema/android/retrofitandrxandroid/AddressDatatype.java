@@ -1,11 +1,6 @@
 package com.kmema.android.retrofitandrxandroid;
 
 import com.google.gson.annotations.SerializedName;
-
-/**
- * Created by kmema on 8/5/2017.
- */
-
 class AddressDatatype {
 
     @SerializedName("street")

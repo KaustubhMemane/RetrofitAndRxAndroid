@@ -2,9 +2,6 @@ package com.kmema.android.retrofitandrxandroid;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by kmema on 8/5/2017.
- */
 
 public class ResumeDataType {
     public String name;
